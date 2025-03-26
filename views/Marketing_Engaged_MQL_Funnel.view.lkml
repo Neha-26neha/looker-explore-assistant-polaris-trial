@@ -1,6 +1,6 @@
 view: Marketing_Engaged_MQL_Funnel {
 # The sql_table_name parameter indicates the underlying database table
-sql_table_name: `google.com.project-polaris-ai.project_polaris_ai_ds.ME_MQL_Funnel`  ;;
+sql_table_name: `google.com:project-polaris-ai.explore_assistant.ME_MQL_Funnel`  ;;
 
 # No mary key is defined for this view. In order to join this view in an Explore,
 # define primary_key: yes on a dimension that has no repeated values.

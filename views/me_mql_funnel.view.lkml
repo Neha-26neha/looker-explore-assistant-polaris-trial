@@ -1,5 +1,5 @@
 view: me_mql_funnel {
-  sql_table_name: `google.com.project-polaris-ai.project_polaris_ai_ds.ME_MQL_Funnel` ;;
+  sql_table_name: `google.com:project-polaris-ai.explore_assistant.ME_MQL_Funnel` ;;
 
   dimension: account_engagement_type {
     type: string
