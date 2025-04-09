@@ -608,7 +608,7 @@ measure: Total_Attributed_Pipeline {
 # Inquiry_Key_Count Dimension
   measure: Inquiry_Key_Count {
     type: number
-    sql: Count(distinct${TABLE}.Inquiry_Key) ;;
+    sql: Count(distinct ${TABLE}.Inquiry_Key) ;;
     label: "Inquiry_Key_Count"
     description: "This attribute give details about Inquiry_Key_Count"
     tags: ["Inquiry_Key_Count"]
