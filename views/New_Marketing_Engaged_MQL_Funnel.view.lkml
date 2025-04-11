@@ -11,7 +11,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Engagement_Type ;;
     label: "Account Engagement Type"
     description: "For Inquiries & Leads, indicates Attribution 3.0 attribution eligibility by flagging whether it is a High Value exception, sourced                      from a currently High Engagement account, or sourced from a currently Low Engagement account. 'Not in Attribution 3.0 Scope'                            indicates that it is neither sourced from an A3.0-eligible account, the 6 OKR regions, nor associated with GCP/GWS products. "
-    tags: ["Account_Engagement_Type"]
+    tags: ["Account Engagement Type","Engagement Type"]
   }
 
   # Account_Sales_Micro_Region Dimension
@@ -20,7 +20,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql:${TABLE}.Account_Sales_Micro_Region;;
     label: "Account Sales Micro Region"
     description: "Sales microregion for which the account is assigned."
-    tags: ["Account_Sales_Micro_Region"]
+    tags: ["Account Sales Micro Region","Sales Micro Region"]
   }
 
   # Account_Sales_Region Dimension
@@ -29,7 +29,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Sales_Region ;;
     label: "Account Sales Region"
     description: "Sales region for which the account is assigned."
-    tags: ["Account_Sales_Region"]
+    tags: ["Account Sales Region","Sales Region"]
   }
 
   # Account_Sales_Sub_Region Dimension
@@ -38,7 +38,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Sales_Sub_Region ;;
     label: "Account Sales Sub Region"
     description: "Sales subregion for which the account is assigned."
-    tags: ["Account_Sales_Sub_Region"]
+    tags: ["Account Sales Sub Region","Sales Sub Region"]
   }
 
   # Account_Sales_Team_NAL_Cluster Dimension
@@ -47,7 +47,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Sales_Team_NAL_Cluster ;;
     label: "Account Sales Team NAL Cluster"
     description: "Sales NAL cluster for which the account is assigned."
-    tags: ["Account_Sales_Team_NAL_Cluster"]
+    tags: ["Account Sales Team NAL Cluster","Sales NAL Cluster"]
   }
 
   # Account_Segment Dimension
@@ -55,8 +55,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Account_Segment ;;
     label: "Account Segment"
-    description: "The segment of the parent Vector account sourced from Anaplan. This represents the spending potential of the Account on Cloud                           Products."
-    tags: ["Account_Segment"]
+    description: "The segment represents the spending potential of the Account on Cloud Products."
+    tags: ["Account Segment"]
   }
 
   # Attributed_MQLs Dimension
@@ -65,7 +65,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql:${TABLE}.Attributed_MQLs;;
     label: "Attributed MQLs"
     description: "Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that sourced                     it."
-    tags: ["Attributed_MQLs"]
+    tags: ["Attributed MQLs","MQLs"]
   }
 
   # Attributed_MQLs Dimension
@@ -73,8 +73,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${TABLE}.Attributed_MQLs) ;;
     label: "Total MQLs"
-    description: "Total Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that                       sourced it."
-    tags: ["Total Attributed MQLs"]
+    description: "Sum of Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that                       sourced it."
+    tags: ["Total Attributed MQLs","Sum of MQLs"]
   }
 
   # MQL_Result Dimension
@@ -83,7 +83,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.MQL_Result ;;
     label: "MQL Result"
     description: "Categorizes MQLs by their MQL SLA Result (Dispositioned without / in- / out-of-SLA, New without / in- / out-of-SLA, Auto Closed)."
-    tags: ["MQL_Result"]
+    tags: ["MQL Result"]
   }
 
   # Lead_Score Dimension
@@ -92,7 +92,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Lead_Score ;;
     label: "Lead Score"
     description: "Indicates the quality of the MQL based on the prospect's behavioral score (A1 is the highest, B2 is the lowest)."
-    tags: ["Lead_Score"]
+    tags: ["Lead Score"]
   }
 
   # MQL_SLA_Rate Dimension
@@ -112,7 +112,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
           0) ;;
     label: "MQL_SLA_Rate"
     description: "This attribute give details about MQLs Dispositioned In-SLA (%)"
-    tags: ["MQL_SLA_Rate"]
+    tags: ["MQL SLA Rate"]
   }
 
   # Rerouted_MQLs Dimension
@@ -125,7 +125,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
           END) ;;
     label: "Rerouted_MQLs"
     description: "This attribute give details about Rerouted_MQLs"
-    tags: ["Rerouted_MQLs"]
+    tags: ["Rerouted MQLs"]
   }
 
   # Not_Rerouted_MQLs Dimension
@@ -138,7 +138,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
           END) ;;
     label: "Not_Rerouted_MQLs"
     description: "This attribute give details about Not_Rerouted_MQLs"
-    tags: ["Not_Rerouted_MQLs"]
+    tags: ["Not Rerouted MQLs"]
   }
 
   # MQL_Rerouted_Rate Dimension
@@ -152,7 +152,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
         / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_Rerouted_Rate"
     description: "This attribute give details about MQL_Rerouted_Rate"
-    tags: ["MQL_Rerouted_Rate"]
+    tags: ["MQL Rerouted Rate"]
   }
 
   # MQL_Auto_Close_Rate Dimension
@@ -167,7 +167,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
         / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_Auto_Close_Rate"
     description: "This attribute give details about A1/A2/A3 Auto Closed MQLs (%)"
-    tags: ["MQL_Auto_Close_Rate"]
+    tags: ["MQL Auto Close Rate"]
   }
 
   # SFDC_Account_ID Dimension
@@ -176,7 +176,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.SFDC_Account_ID ;;
     label: "SFDC Account ID"
     description: "The Salesforce ID for the account that the person belongs to. "
-    tags: ["SFDC_Account_ID"]
+    tags: ["SFDC Account ID"]
   }
 
   # MQL_Accounts Dimension
@@ -190,7 +190,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
             END) ;;
     label: "MQL_Accounts"
     description: "This attribute give details about MQL_Accounts"
-    tags: ["MQL_Accounts"]
+    tags: ["MQL Accounts"]
   }
 
   # Dispositioned_MQL_Accounts Dimension
@@ -209,7 +209,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
             END) ;;
     label: "Dispositioned_MQL_Accounts"
     description: "This attribute give details about Dispositioned_MQL_Accounts"
-    tags: ["Dispositioned_MQL_Accounts"]
+    tags: ["Dispositioned MQL Accounts"]
   }
 
   # QSO_Accounts Dimension
@@ -223,7 +223,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
             END) ;;
     label: "QSO_Accounts"
     description: "This attribute give details about total QSO_Accounts"
-    tags: ["QSO_Accounts"]
+    tags: ["QSO Accounts"]
   }
 
   # ATO Dimension
@@ -271,7 +271,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql:${TABLE}.Attributed_SALs;;
     label: "AAttributed SALs"
     description: "Attributed number of SALs (between 0 & 1) that indicates the fraction of the SAL that is attributable to the Inquiries that sourced it. "
-    tags: ["Attributed_SALs"]
+    tags: ["Attributed SALs"]
   }
 
   # MQL_to_SAL Dimension
@@ -280,7 +280,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${Attributed_SALs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_to_SAL"
     description: "This attribute give details about MQL_to_SAL"
-    tags: ["MQL_to_SAL"]
+    tags: ["MQL to SAL"]
   }
 
   # Attributed_SALs Dimension
@@ -289,7 +289,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${TABLE}.Attributed_SALs) ;;
     label: "Total_Attributed_SALs"
     description: "This attribute give details about Total_Attributed_SALs"
-    tags: ["Total_Attributed_SALs"]
+    tags: ["Total Attributed SALs","Sum of SALs"]
   }
 
   # SAL_to_S0 Dimension
@@ -298,7 +298,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${Attributed_S0s}) / NULLIF(SUM(${Attributed_SALs}), 0) ;;
     label: "SAL_to_S0"
     description: "This attribute give details about SAL_to_S0"
-    tags: ["SAL_to_S0"]
+    tags: ["SAL to S0"]
   }
 
   # Attributed_S0s Dimension
@@ -307,7 +307,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${TABLE}.Attributed_S0s) ;;
     label: "Total_Attributed_S0s"
     description: "This attribute give details about Total_Attributed_S0s"
-    tags: ["Total_Attributed_S0s"]
+    tags: ["Total Attributed S0s","Sum of S0s"]
   }
 
   # S0_to_QSO Dimension
@@ -316,7 +316,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_S0s}), 0) ;;
     label: "S0_to_QSO"
     description: "This attribute give details about S0_to_QSO"
-    tags: ["S0_to_QSO"]
+    tags: ["S0 to QSO"]
   }
 
   # Attributed_QSOs Dimension
@@ -325,7 +325,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${TABLE}.Attributed_QSOs) ;;
     label: "Total_Attributed_QSOs"
     description: "This attribute give details about Total_Attributed_QSOs"
-    tags: ["Total_Attributed_QSOs"]
+    tags: ["Total Attributed QSOs","Sum of QSOs"]
   }
 
   # MQL_to_QSO Dimension
@@ -334,284 +334,281 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_to_QSO"
     description: "This attribute give details about MQL_to_QSO"
-    tags: ["MQL_to_QSO"]
-}
+    tags: ["MQL to QSO"]
+  }
 
 # Attributed_QSOs Dimension
-dimension: Attributed_QSOs {
-  type: number
-  sql: ${TABLE}.Attributed_QSOs ;;
-  label: "Attributed QSOs"
-  description: "Attributed number (between 0 & 1) that indicates the fraction of the QSO that is attributable to eligible inquiries and/or leads                      (includes placeholders for outbound opportunities)."
-  tags: ["Attributed_QSOs"]
-}
+  dimension: Attributed_QSOs {
+    type: number
+    sql: ${TABLE}.Attributed_QSOs ;;
+    label: "Attributed QSOs"
+    description: "Attributed number (between 0 & 1) that indicates the fraction of the QSO that is attributable to eligible inquiries and/or leads                      (includes placeholders for outbound opportunities)."
+    tags: ["Attributed QSOs"]
+  }
 
 # Attributed_S0s Dimension
-dimension: Attributed_S0s {
-  type: number
-  sql: ${TABLE}.Attributed_S0s ;;
-  label: "Attributed S0s"
-  description: "Attributed number (between 0 & 1) that indicates the fraction of the S0 that is attributable to eligible inquiries and/or leads                       (includes placeholders for outbound opportunities)."
-  tags: ["Attributed_S0s"]
-}
+  dimension: Attributed_S0s {
+    type: number
+    sql: ${TABLE}.Attributed_S0s ;;
+    label: "Attributed S0s"
+    description: "Attributed number (between 0 & 1) that indicates the fraction of the S0 that is attributable to eligible inquiries and/or leads                       (includes placeholders for outbound opportunities)."
+    tags: ["Attributed S0s"]
+  }
 
 # Buyer_Segment_Rollup Dimension
-dimension: Buyer_Segment_Rollup {
-  type: string
-  sql: ${TABLE}.Buyer_Segment_Rollup ;;
-  label: "Buyer Segment Rollup"
-  description: "The propect's role at their company rolled up to Executive, Decision Maker, Practitioner, or Unknown based on the Buyer Segment                        model."
-  tags: ["Buyer_Segment_Rollup"]
-}
+  dimension: Buyer_Segment_Rollup {
+    type: string
+    sql: ${TABLE}.Buyer_Segment_Rollup ;;
+    label: "Buyer Segment Rollup"
+    description: "The propect's role at their company rolled up to Executive, Decision Maker, Practitioner, or Unknown based on the Buyer Segment                        model."
+    tags: ["Buyer Segment Rollup"]
+  }
 
 # Demand_Type Dimension
-dimension: Demand_Type {
-  type: string
-  sql: ${TABLE}.Demand_Type ;;
-  label: "Demand Type"
-  description: "Indicates whether the marketing effort was part of the Inbound or Outbound funnel. Inbound starts the prospect journey with an                         inquiry while Outbound starts with opportunity creation from sales outreach assisted by Marketing."
-  tags: ["Demand_Type"]
-}
+  dimension: Demand_Type {
+    type: string
+    sql: ${TABLE}.Demand_Type ;;
+    label: "Demand Type"
+    description: "Indicates whether the marketing effort was part of the Inbound or Outbound funnel. Inbound starts the prospect journey with an                         inquiry while Outbound starts with opportunity creation from sales outreach assisted by Marketing."
+    tags: ["Demand Type"]
+  }
 
 # Greenfield_Status Dimension
-dimension: Greenfield_Status {
-  type: string
-  sql:${TABLE}.Greenfield_Status;;
-  label: "Greenfield Status"
-  description: "Arbitrates the Greenfield status of demand based on the funnel stage, product, and date the demand was sourced -- use Greenfield                       Status to keep it simple!"
-  tags: ["Greenfield_Status"]
-}
+  dimension: Greenfield_Status {
+    type: string
+    sql:${TABLE}.Greenfield_Status;;
+    label: "Greenfield Status"
+    description: "Arbitrates the Greenfield status of demand based on the funnel stage, product, and date the demand was sourced -- use Greenfield                       Status to keep it simple!"
+    tags: ["Greenfield Status"]
+  }
 
 # Inquiry_Source Dimension
-dimension: Inquiry_Source {
-  type: string
-  sql: ${TABLE}.Inquiry_Source ;;
-  label: "Inquiry_Source"
-  description: "Inquiry was sourced by Direct Marketing vs Partner Marketing. If there is overlap between Direct and Partner, credit is split evenly                   with multi-touch attribution."
-  tags: ["Inquiry_Source"]
-}
+  dimension: Inquiry_Source {
+    type: string
+    sql: ${TABLE}.Inquiry_Source ;;
+    label: "Inquiry_Source"
+    description: "Inquiry was sourced by Direct Marketing vs Partner Marketing. If there is overlap between Direct and Partner, credit is split evenly                   with multi-touch attribution."
+    tags: ["Inquiry Source"]
+  }
 
 # Lead_Initial_Routing_Team Dimension
-dimension: Lead_Initial_Routing_Team {
-  type: string
-  sql: ${TABLE}.Lead_Initial_Routing_Team ;;
-  label: "Lead Initial Routing Team"
-  description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Initial Routing Team (BDR,                              FSR/Specialist, Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
-  tags: ["Lead_Initial_Routing_Team"]
-}
+  dimension: Lead_Initial_Routing_Team {
+    type: string
+    sql: ${TABLE}.Lead_Initial_Routing_Team ;;
+    label: "Lead Initial Routing Team"
+    description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Initial Routing Team (BDR,                              FSR/Specialist, Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
+    tags: ["Lead Initial Routing Team"]
+  }
 
 # Lead_Owner_Team Dimension
-dimension: Lead_Owner_Team {
-  type: string
-  sql: ${TABLE}.Lead_Owner_Team ;;
-  label: "Lead Owner Team"
-  description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Owner Team (BDR, FSR/Specialist,                        Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
-  tags: ["Lead_Owner_Team"]
-}
+  dimension: Lead_Owner_Team {
+    type: string
+    sql: ${TABLE}.Lead_Owner_Team ;;
+    label: "Lead Owner Team"
+    description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Owner Team (BDR, FSR/Specialist,                        Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
+    tags: ["Lead Owner Team","Lead Owner"]
+  }
 
 # Lead_Owner_User_LDAP Dimension
-dimension: Lead_Owner_User_LDAP {
-  type: string
-  sql: ${TABLE}.Lead_Owner_User_LDAP ;;
-  label: "Lead Owner User LDAP"
-  description: "The LDAP of the Salesforce user who currently owns the lead."
-  tags: ["Lead_Owner_User_LDAP"]
-}
+  dimension: Lead_Owner_User_LDAP {
+    type: string
+    sql: ${TABLE}.Lead_Owner_User_LDAP ;;
+    label: "Lead Owner User LDAP"
+    description: "The LDAP of the Salesforce user who currently owns the lead."
+    tags: ["Lead Owner User LDAP","Lead Owner User"]
+  }
 
 # Lead_Owner_User_LDAP_Manager Dimension
-dimension: AttribLead_Owner_User_LDAP_Manageruted_MQLs {
-  type: string
-  sql:${TABLE}.Lead_Owner_User_LDAP_Manager;;
-  label: "Lead Owner User LDAP Manager"
-  description: "The LDAP of the manager of the Salesforce user who currently owns the lead."
-  tags: ["Lead_Owner_User_LDAP_Manager"]
-}
+  dimension: AttribLead_Owner_User_LDAP_Manageruted_MQLs {
+    type: string
+    sql:${TABLE}.Lead_Owner_User_LDAP_Manager;;
+    label: "Lead Owner User LDAP Manager"
+    description: "The LDAP of the manager of the Salesforce user who currently owns the lead."
+    tags: ["Lead Owner User LDAP Manager","Lead Owner User Manager"]
+  }
 
 # Lead_Owner_User_LDAP_Manager_Hierarchy Dimension
-dimension: Lead_Owner_User_LDAP_Manager_Hierarchy {
-  type: string
-  sql: ${TABLE}.Lead_Owner_User_LDAP_Manager_Hierarchy ;;
-  label: "Lead Owner User LDAP Manager Hierarchy"
-  description: "The LDAPs of the current Salesforce owner's manager's manager(s)."
-  tags: ["Lead_Owner_User_LDAP_Manager_Hierarchy"]
-}
-
-
+  dimension: Lead_Owner_User_LDAP_Manager_Hierarchy {
+    type: string
+    sql: ${TABLE}.Lead_Owner_User_LDAP_Manager_Hierarchy ;;
+    label: "Lead Owner User LDAP Manager Hierarchy"
+    description: "The LDAPs of the current Salesforce owner's manager's manager(s)."
+    tags: ["Lead Owner User LDAP Manager Hierarchy","Lead Owner User Manager Hierarchy"]
+  }
 
 # MQL_Aging_Bucket Dimension
-dimension: MQL_Aging_Bucket {
-  type: string
-  sql: ${TABLE}.MQL_Aging_Bucket ;;
-  label: "MQL Aging Bucket"
-  description: "Buckets MQLs by the number of days from qualification to disposition, or if the MQL is still in New, the number of days since                          qualification."
-  tags: ["MQL_Aging_Bucket"]
-}
+  dimension: MQL_Aging_Bucket {
+    type: string
+    sql: ${TABLE}.MQL_Aging_Bucket ;;
+    label: "MQL Aging Bucket"
+    description: "Buckets MQLs by the number of days from qualification to disposition, or if the MQL is still in New, the number of days since                          qualification."
+    tags: ["MQL Aging Bucket","Aging Bucket"]
+  }
 
 # MQL_Aging_Days Dimension
-dimension: MQL_Aging_Days {
-  type: number
-  sql: ${TABLE}.MQL_Aging_Days ;;
-  label: "MQL Aging Days"
-  description: "The number of days from qualification to disposition, or if the MQL is still in New, the number of days since qualification."
-  tags: ["MQL_Aging_Days"]
-}
+  dimension: MQL_Aging_Days {
+    type: number
+    sql: ${TABLE}.MQL_Aging_Days ;;
+    label: "MQL Aging Days"
+    description: "The number of days from qualification to disposition, or if the MQL is still in New, the number of days since qualification."
+    tags: ["MQL Aging Days","Aging Days"]
+  }
 
 # MQL_Date Dimension
-dimension: MQL_Date {
-  sql: PARSE_DATE('%Y-%m-%d', CAST(${TABLE}.MQL_Date AS STRING));;
-  type: date
-  label: "MQL Date"
-  description: "The date the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
-  tags: ["MQL_Date"]
-  datatype: date
-}
+  dimension: MQL_Date {
+    sql: PARSE_DATE('%Y-%m-%d', CAST(${TABLE}.MQL_Date AS STRING));;
+    type: date
+    label: "MQL Date"
+    description: "The date the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
+    tags: ["MQL Date","date"]
+    datatype: date
+  }
 
 # MQL_Disposition Dimension
-dimension: MQL_Disposition {
-  type: string
-  sql: ${TABLE}.MQL_Disposition ;;
-  label: "MQL Disposition"
-  description: "The final outcome of the MQL (whether the MQL became an SAL or not)."
-  tags: ["MQL_Disposition"]
-}
+  dimension: MQL_Disposition {
+    type: string
+    sql: ${TABLE}.MQL_Disposition ;;
+    label: "MQL Disposition"
+    description: "The final outcome of the MQL (whether the MQL became an SAL or not)."
+    tags: ["MQL Disposition"]
+  }
 
 # MQL_Month Dimension
-dimension: MQL_Month {
-  sql: PARSE_DATE('%Y-%m-%d', CAST(${TABLE}.MQL_Month AS STRING));;
-  type: date
-  label: "MQL Month"
-  description: "The month the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
-  tags: ["MQL_Month"]
-  datatype: date
-}
-
-
+  dimension: MQL_Month {
+    sql: PARSE_DATE('%Y-%m-%d', CAST(${TABLE}.MQL_Month AS STRING));;
+    type: date
+    label: "MQL Month"
+    description: "The month the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
+    tags: ["MQL Month","month"]
+    datatype: date
+  }
 
 # MQL_Week Dimension
-dimension: MQL_Week {
-  sql: PARSE_DATE('%Y-%m-%d', CAST(${TABLE}.MQL_Week AS STRING));;
-  type: date
-  label: "MQL Week"
-  description: "The week (starting Sunday) the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
-  tags: ["MQL_Week"]
-  datatype: date
-}
+  dimension: MQL_Week {
+    sql: PARSE_DATE('%Y-%m-%d', CAST(${TABLE}.MQL_Week AS STRING));;
+    type: date
+    label: "MQL Week"
+    description: "The week (starting Sunday) the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
+    tags: ["MQL Week","week"]
+    datatype: date
+  }
 
 # Offer_Type Dimension
-dimension: Offer_Type {
-  type: string
-  sql: ${TABLE}.Offer_Type ;;
-  label: "Offer_Type"
-  description: "The type of proposed offer we are giving the prospect."
-  tags: ["Offer_Type"]
-}
+  dimension: Offer_Type {
+    type: string
+    sql: ${TABLE}.Offer_Type ;;
+    label: "Offer_Type"
+    description: "The type of proposed offer we are giving the prospect."
+    tags: ["Offer Type"]
+  }
 
 # OKR_Reporting_Scope Dimension
-dimension: OKR_Reporting_Scope {
-  type: string
-  sql: ${TABLE}.OKR_Reporting_Scope ;;
-  label: "OKR Reporting Scope"
-  description: "NA"
-  tags: ["OKR_Reporting_Scope"]
-}
+  dimension: OKR_Reporting_Scope {
+    type: string
+    sql: ${TABLE}.OKR_Reporting_Scope ;;
+    label: "OKR Reporting Scope"
+    description: "NA"
+    tags: ["OKR Reporting Scope"]
+  }
 
 # SAL_Disposition Dimension
-dimension: SAL_Disposition {
-  type: number
-  sql: ${TABLE}.SAL_Disposition ;;
-  label: "SAL Disposition"
-  description: "The final outcome of the SAL, where either an opportunity was created or not (i.e. did the Lead reach the S0+ stage). This field                      does not apply for Attribution 3.0."
-  tags: ["SAL_Disposition"]
-}
+  dimension: SAL_Disposition {
+    type: number
+    sql: ${TABLE}.SAL_Disposition ;;
+    label: "SAL Disposition"
+    description: "The final outcome of the SAL, where either an opportunity was created or not (i.e. did the Lead reach the S0+ stage). This field                      does not apply for Attribution 3.0."
+    tags: ["SAL Disposition"]
+  }
 
 # SFDC_Campaign_ID Dimension
-dimension: SFDC_Campaign_ID {
-  type: string
-  sql: ${TABLE}.SFDC_Campaign_ID ;;
-  label: "SFDC Campaign ID"
-  description: "The unique identifier of the Salesforce campaign."
-  tags: ["SFDC_Campaign_ID"]
-}
+  dimension: SFDC_Campaign_ID {
+    type: string
+    sql: ${TABLE}.SFDC_Campaign_ID ;;
+    label: "SFDC Campaign ID"
+    description: "The unique identifier of the Salesforce campaign."
+    tags: ["SFDC Campaign ID"]
+  }
 
 # SFDC_Campaign_Name Dimension
-dimension: SFDC_Campaign_Name {
-  type: string
-  sql: ${TABLE}.SFDC_Campaign_Name ;;
-  label: "SFDC Campaign Name"
-  description: "The name of the Salesforce campaign."
-  tags: ["SFDC_Campaign_Name"]
-}
+  dimension: SFDC_Campaign_Name {
+    type: string
+    sql: ${TABLE}.SFDC_Campaign_Name ;;
+    label: "SFDC Campaign Name"
+    description: "The name of the Salesforce campaign."
+    tags: ["SFDC_Campaign_Name", "Campaign Name", "Campaign"]
+  }
 
 # Inquiry_Key Dimension
-dimension: Inquiry_Key {
-  type: number
-  sql: ${TABLE}.Inquiry_Key ;;
-  label: "Inquiry Key"
-  description: "The unique identifier (primary key) for the inquiry."
-  tags: ["Inquiry_Key"]
-}
+  dimension: Inquiry_Key {
+    type: string
+    sql: ${TABLE}.Inquiry_Key ;;
+    label: "Inquiry Key"
+    description: "The unique identifier (primary key) for the inquiry."
+    tags: ["Inquiry Key","inquiry","inquiries"]
+  }
 
 # Offer_Products Dimension
-dimension: Offer_Products {
-  type: string
-  sql: ${TABLE}.Offer_Products ;;
-  label: "Offer Products"
-  description: "The individual product family(s) associated with the campaign. There can be 2+ products per campaign and there is currently no                        attribution model to dedup & produce MECE allocations. Instead, each product gets 100% of the credit for demand sourced."
-  tags: ["Offer_Products"]
-}
+  dimension: Offer_Products {
+    type: string
+    sql: ${TABLE}.Offer_Products ;;
+    label: "Offer Products"
+    description: "The individual product family(s) associated with the campaign. There can be 2+ products per campaign and there is currently no                        attribution model to dedup & produce MECE allocations. Instead, each product gets 100% of the credit for demand sourced."
+    tags: ["Offer Products"]
+  }
 
 # Product Dimension
-dimension: Product {
-  type: string
-  sql: ${TABLE}.Product ;;
-  label: "Product"
-  description: "Flags the product family of the demand based on the funnel stage's cohort (i.e. if 'Google Cloud Platform' is selected, only inquiries, leads, and opportunities with 'Google Cloud Platform' as the product family will be selected)."
-  tags: ["Product"]
-}
+  dimension: Product {
+    type: string
+    sql: ${TABLE}.Product ;;
+    label: "Product"
+    description: "Flags the product family of the demand based on the funnel stage's cohort (i.e. if 'Google Cloud Platform' is selected, only inquiries, leads, and opportunities with 'Google Cloud Platform' as the product family will be selected)."
+    tags: ["Product"]
+  }
 
 # MQL_Quarter Dimension
-dimension: MQL_Quarter {
-  type: number
-  sql: ${TABLE}.MQL_Quarter ;;
-  label: "MQL Quarter"
-  description: "The quarter the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
-  tags: ["MQL_Quarter"]
-}
+  dimension: MQL_Quarter {
+    type: number
+    sql: ${TABLE}.MQL_Quarter ;;
+    label: "MQL Quarter"
+    description: "The quarter the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
+    tags: ["MQL Quarter","quarter"]
+      }
 
 # Inquiry_Quarter Dimension
-dimension: Inquiry_Quarter {
-  type: string
-  sql: ${TABLE}.Inquiry_Quarter ;;
-  label: "Inquiry Quarter"
-  description: "The quarter the inquiry was submitted."
-  tags: ["Inquiry_Quarter"]
-}
-
-# Attributed_Pipeline Dimension
-dimension: Attributed_Pipeline {
-  type: string
-  sql: ${TABLE}.Attributed_Pipeline ;;
-  label: "Attributed Pipeline"
-  description: "Attributed pipeline ($) that indicates the fraction of the current S1+ pipeline that is attributable to eligible inquiries and/or                     leads (includes placeholders for outbound opportunities). "
-  tags: ["Attributed_Pipeline"]
-}
-
-# Attributed_Pipeline Dimension
-measure: Total_Attributed_Pipeline {
-  type: number
-  sql: SUM(${TABLE}.Attributed_Pipeline) ;;
-  label: "Total_Attributed_Pipeline"
-  description: "This attribute give details about Total_Attributed_Pipeline"
-  tags: ["Total_Attributed_Pipeline"]
-}
-
-# Inquiry_Key_Count Dimension
-  measure: Inquiry_Key_Count {
-    type: number
-    sql: Count(distinct ${TABLE}.Inquiry_Key) ;;
-    label: "Inquiry_Key_Count"
-    description: "This attribute give details about Inquiry_Key_Count"
-    tags: ["Inquiry_Key_Count"]
+      dimension: Inquiry_Quarter {
+      type: string
+      sql: ${TABLE}.Inquiry_Quarter ;;
+      label: "Inquiry Quarter"
+      description: "The quarter the inquiry was submitted."
+      tags: ["Inquiry Quarter"]
   }
+
+# Attributed_Pipeline Dimension
+  dimension: Attributed_Pipeline {
+    type: string
+    sql: ${TABLE}.Attributed_Pipeline ;;
+    label: "Attributed Pipeline"
+    description: "Attributed pipeline ($) that indicates the fraction of the current S1+ pipeline that is attributable to eligible inquiries and/or                     leads (includes placeholders for outbound opportunities). "
+    tags: ["Attributed Pipeline"]
+  }
+
+# Attributed_Pipeline Dimension
+  measure: Total_Attributed_Pipeline {
+    type: number
+    sql: SUM(${TABLE}.Attributed_Pipeline) ;;
+    label: "Total_Attributed_Pipeline"
+    description: "This attribute give details about Total_Attributed_Pipeline"
+    tags: ["Total Attributed Pipeline","Sum of attributed pipeline"]
+  }
+
+# Inquiry_Key_Count measure
+  measure: Inquiry_Key_Count {
+    type: count
+    drill_fields: [Inquiry_Key]
+    label: "Inquiry_Key_Count"
+    description: "This attribute give details about count of Inquiry Key"
+    tags: ["Inquiry Key Count","count of Inquiries"]
+  }
+
 
 }
