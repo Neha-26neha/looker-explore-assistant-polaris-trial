@@ -648,7 +648,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
   measure: mql_prev_week {
     type: sum
     sql: CASE
-           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_week}) = FORMAT_DATE('%Y-%m-%d', t.MQL_Week)
+           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_week}) = FORMAT_DATE('%Y-%m-%d', ${MQL_Week})
            THEN ${Attributed_MQLs}
            ELSE 0
          END ;;
