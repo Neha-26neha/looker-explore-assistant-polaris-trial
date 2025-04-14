@@ -626,7 +626,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 MONTH) ;;
     label: "Previous Month"
     description: "Date one month prior to the current date"
-    tags: ["previous  month"]
+    tags: ["previous month","last month"]
   }
 
   dimension: previous_year {
@@ -634,7 +634,15 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 YEAR) ;;
     label: "Previous Year"
     description: "Date one year prior to the current date"
-    tags: ["previous year"]
+    tags: ["previous year","last year"]
+  }
+
+  dimension: previous_week {
+    type: date
+    sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 WEEK) ;;
+    label: "Previous Week"
+    description: "Date one week prior to the current date"
+    tags: ["previous week","last week"]
   }
 
   # MQLs Measures
@@ -660,6 +668,18 @@ view: New_Marketing_Engaged_MQL_Funnel {
     label: "MQLs Previous Year"
     description: "MQLs for the previous year"
     tags: ["MQL previous year","attributed MQL previous year"]
+  }
+
+  measure: mql_prev_week {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y', ${previous_week}) = FORMAT_DATE('%Y', ${MQL_Date})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Week"
+    description: "MQLs for the previous week"
+    tags: ["MQL previous week","attributed MQL previous week"]
   }
 
 }
