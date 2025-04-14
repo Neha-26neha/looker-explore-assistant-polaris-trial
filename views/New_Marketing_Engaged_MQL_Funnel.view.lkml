@@ -572,15 +572,15 @@ view: New_Marketing_Engaged_MQL_Funnel {
     label: "MQL Quarter"
     description: "The quarter the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
     tags: ["MQL Quarter","quarter"]
-      }
+  }
 
 # Inquiry_Quarter Dimension
-      dimension: Inquiry_Quarter {
-      type: string
-      sql: ${TABLE}.Inquiry_Quarter ;;
-      label: "Inquiry Quarter"
-      description: "The quarter the inquiry was submitted."
-      tags: ["Inquiry Quarter"]
+  dimension: Inquiry_Quarter {
+    type: string
+    sql: ${TABLE}.Inquiry_Quarter ;;
+    label: "Inquiry Quarter"
+    description: "The quarter the inquiry was submitted."
+    tags: ["Inquiry Quarter"]
   }
 
 # Attributed_Pipeline Dimension
@@ -607,8 +607,59 @@ view: New_Marketing_Engaged_MQL_Funnel {
     drill_fields: [Inquiry_Key]
     label: "Inquiry_Key_Count"
     description: "This attribute give details about count of Inquiry Key"
-    tags: ["Inquiry Key Count","count of Inquiries"]
+    tags: ["Inquiry Count","count of Inquiries"]
   }
 
+# MQL_Date Dimension Group
+  dimension_group: MQL_Date {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.MQL_Date ;;
+    label: "MQL Date"
+    description: "the MQL qualified"
+    tags: ["MQL Date","date"]
+  }
+
+  # Previous Month and Year Dimensions
+  dimension: previous_month {
+    type: date
+    sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 MONTH) ;;
+    label: "Previous Month"
+    description: "Date one month prior to the current date"
+    tags: ["previous  month"]
+  }
+
+  dimension: previous_year {
+    type: date
+    sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 YEAR) ;;
+    label: "Previous Year"
+    description: "Date one year prior to the current date"
+    tags: ["previous year"]
+  }
+
+  # MQLs Measures
+  measure: mql_prev_month {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y-%m', ${previous_month}) = FORMAT_DATE('%Y-%m', ${MQL_Date})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Month"
+    description: "MQLs for the previous month"
+    tags: ["MQL previous month","attributed MQL previous month"]
+  }
+
+  measure: mql_prev_year {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y', ${previous_year}) = FORMAT_DATE('%Y', ${MQL_Date})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Year"
+    description: "MQLs for the previous year"
+    tags: ["MQL previous year","attributed MQL previous year"]
+  }
 
 }
