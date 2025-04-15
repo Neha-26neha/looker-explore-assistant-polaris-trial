@@ -663,7 +663,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
          END ;;
     label: "MQLs Previous Week"
     description: "MQLs for the previous week"
-    tags: ["MQL for previous week","attributed MQL for previous week"]
+    tags: ["MQLs for last week","attributed MQL for previous week"]
   }
 
   measure: mql_prev_month {
@@ -675,7 +675,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
          END ;;
     label: "MQLs Previous Month"
     description: "MQLs for the previous month"
-    tags: ["MQL for previous month","attributed MQL for previous month"]
+    tags: ["MQLs for last month","attributed MQL for previous month"]
   }
 
   measure: mql_prev_quarter {
@@ -687,7 +687,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
          END ;;
     label: "MQLs Previous Quarter"
     description: "MQLs for the previous quarter"
-    tags: ["MQL for previous quarter","attributed MQL for previous quarter"]
+    tags: ["MQLs for last quarter","attributed MQL for previous quarter"]
   }
 
   measure: mql_prev_year {
@@ -699,7 +699,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
          END ;;
     label: "MQLs Previous Year"
     description: "MQLs for the previous year"
-    tags: ["MQL for previous year","attributed MQL for previous year"]
+    tags: ["MQLs for last year","attributed MQL for previous year"]
   }
 
 }
