@@ -92,7 +92,6 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Lead_Score ;;
     label: "Lead Score"
     description: "Indicates the quality of the MQL based on the prospect's behavioral score."
-    #(A1 is the highest, B2 is the lowest)."
     tags: ["Lead Score"]
   }
 
@@ -167,7 +166,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
           END)
         / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_Auto_Close_Rate"
-    description: "This attribute give details about A1/A2/A3 Auto Closed MQLs (%)"
+    description: "This attribute give details about Auto Closed MQLs (%)"
     tags: ["MQL Auto Close Rate"]
   }
 
@@ -334,7 +333,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_to_QSO"
-    description: "This attribute give details about MQL_to_QSO"
+    description: "This attribute give details about MQL to QSO"
     tags: ["MQL to QSO"]
   }
 
@@ -553,7 +552,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Offer_Products ;;
     label: "Offer Products"
-    description: "The individual product family(s) associated with the campaign."
+    description: "The individual product family's associated with the campaign."
     tags: ["Offer Products"]
   }
 
@@ -621,23 +620,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     tags: ["MQL Date","date"]
   }
 
-  # Previous Month and Year Dimensions
-  dimension: previous_month {
-    type: date
-    sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 MONTH) ;;
-    label: "Previous Month"
-    description: "Date one month prior to the current date"
-    tags: ["previous month","last month"]
-  }
-
-  dimension: previous_year {
-    type: date
-    sql: DATE_SUB(${TABLE}.MQL_Date, INTERVAL 1 YEAR) ;;
-    label: "Previous Year"
-    description: "Date one year prior to the current date"
-    tags: ["previous year","last year"]
-  }
-
+  # Previous Week, Month, Quarter and Year Dimensions
   dimension: previous_week {
     type: date
     sql: DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK), INTERVAL 1 WEEK) ;;
@@ -646,6 +629,31 @@ view: New_Marketing_Engaged_MQL_Funnel {
     tags: ["previous week","last week"]
   }
 
+  dimension: previous_month {
+    type: date
+    sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) ;;
+    label: "Previous Month"
+    description: "Date one month prior to the current date"
+    tags: ["previous month","last month"]
+  }
+
+  dimension: previous_quarter {
+    type: date
+    sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH), QUARTER) ;;
+    label: "Previous Quarter"
+    description: "Date one quarter prior to the current date"
+    tags: ["previous month","last month"]
+  }
+
+  dimension: previous_year {
+    type: date
+    sql: DATE(FORMAT_DATE('%Y-01-01', DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR))) ;;
+    label: "Previous Year"
+    description: "Date one year prior to the current date"
+    tags: ["previous year","last year"]
+  }
+
+  # MQLs for Previous Week, Month, Quarter and Year Measures
   measure: mql_prev_week {
     type: sum
     sql: CASE
@@ -655,20 +663,31 @@ view: New_Marketing_Engaged_MQL_Funnel {
          END ;;
     label: "MQLs Previous Week"
     description: "MQLs for the previous week"
-    tags: ["MQL previous week","attributed MQL previous week"]
+    tags: ["MQL for previous week","attributed MQL for previous week"]
   }
 
-  # MQLs Measures
   measure: mql_prev_month {
     type: sum
     sql: CASE
-           WHEN FORMAT_DATE('%Y-%m', ${previous_month}) = FORMAT_DATE('%Y-%m', ${MQL_Date})
+           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_month}) = FORMAT_DATE('%Y-%m-%d', ${MQL_Month})
            THEN ${Attributed_MQLs}
            ELSE 0
          END ;;
     label: "MQLs Previous Month"
     description: "MQLs for the previous month"
-    tags: ["MQL previous month","attributed MQL previous month"]
+    tags: ["MQL for previous month","attributed MQL for previous month"]
+  }
+
+  measure: mql_prev_quarter {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_quarter}) = FORMAT_DATE('%Y-%m-%d', ${MQL_Quarter})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Quarter"
+    description: "MQLs for the previous quarter"
+    tags: ["MQL for previous quarter","attributed MQL for previous quarter"]
   }
 
   measure: mql_prev_year {
@@ -680,7 +699,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
          END ;;
     label: "MQLs Previous Year"
     description: "MQLs for the previous year"
-    tags: ["MQL previous year","attributed MQL previous year"]
+    tags: ["MQL for previous year","attributed MQL for previous year"]
   }
 
 }
