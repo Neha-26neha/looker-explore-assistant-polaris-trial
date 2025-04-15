@@ -91,7 +91,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Lead_Score ;;
     label: "Lead Score"
-    description: "Indicates the quality of the MQL based on the prospect's behavioral score (A1 is the highest, B2 is the lowest)."
+    description: "Indicates the quality of the MQL based on the prospect's behavioral score."
+    #(A1 is the highest, B2 is the lowest)."
     tags: ["Lead Score"]
   }
 
