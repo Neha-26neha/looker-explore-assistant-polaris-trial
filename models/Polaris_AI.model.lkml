@@ -13,11 +13,6 @@ datagroup: polaris_ai_default_datagroup {
 }
 
 persist_with: polaris_ai_default_datagroup
-explore:Marketing_Engaged_MQL_Funnel{
-  view_name: Marketing_Engaged_MQL_Funnel
-  case_sensitive: no
-
-}
 explore:New_Marketing_Engaged_MQL_Funnel{
   view_name: New_Marketing_Engaged_MQL_Funnel
   case_sensitive: no
