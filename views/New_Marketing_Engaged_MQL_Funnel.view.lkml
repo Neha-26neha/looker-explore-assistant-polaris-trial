@@ -10,8 +10,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Account_Engagement_Type ;;
     label: "Account Engagement Type"
-    description: "For Inquiries & Leads, indicates Attribution 3.0 attribution eligibility by flagging whether it is a High Value exception, sourced                      from a currently High Engagement account, or sourced from a currently Low Engagement account. 'Not in Attribution 3.0 Scope'                            indicates that it is neither sourced from an A3.0-eligible account, the 6 OKR regions, nor associated with GCP/GWS products. "
-    tags: ["Account Engagement Type","Engagement Type"]
+    description: "For Inquiries & Leads, indicates Attribution 3.0 attribution eligibility by flagging whether it is a High Value exception, sourced from a currently High Engagement account, or sourced from a currently Low Engagement account. 'Not in Attribution 3.0 Scope' indicates that it is neither sourced from an A3.0-eligible account, the 6 OKR regions, nor associated with GCP/GWS products. "
+    tags: ["Account Engagement Type","Engagement Type","Engagement"]
   }
 
   # Account_Sales_Micro_Region Dimension
@@ -20,7 +20,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql:${TABLE}.Account_Sales_Micro_Region;;
     label: "Account Sales Micro Region"
     description: "Sales microregion for which the account is assigned."
-    tags: ["Account Sales Micro Region","Sales Micro Region"]
+    tags: ["Account Sales Micro Region","Sales Micro Region","Micro Region"]
   }
 
   # Account_Sales_Region Dimension
@@ -29,7 +29,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Sales_Region ;;
     label: "Account Sales Region"
     description: "Sales region for which the account is assigned."
-    tags: ["Account Sales Region","Sales Region"]
+    tags: ["Account Sales Region","Sales Region","Region"]
   }
 
   # Account_Sales_Sub_Region Dimension
@@ -38,7 +38,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Sales_Sub_Region ;;
     label: "Account Sales Sub Region"
     description: "Sales subregion for which the account is assigned."
-    tags: ["Account Sales Sub Region","Sales Sub Region"]
+    tags: ["Account Sales Sub Region","Sales Sub Region","Sub Region"]
   }
 
   # Account_Sales_Team_NAL_Cluster Dimension
@@ -56,7 +56,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: ${TABLE}.Account_Segment ;;
     label: "Account Segment"
     description: "The segment represents the spending potential of the Account on Cloud Products."
-    tags: ["Account Segment"]
+    tags: ["Account Segment","Segment"]
   }
 
   # Attributed_MQLs Dimension
@@ -64,7 +64,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql:${TABLE}.Attributed_MQLs;;
     label: "Attributed MQLs"
-    description: "Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that sourced                     it."
+    description: "Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that sourced it."
     tags: ["Attributed MQLs","MQLs"]
   }
 
@@ -73,8 +73,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${TABLE}.Attributed_MQLs) ;;
     label: "Total MQLs"
-    description: "Sum of Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that                       sourced it."
-    tags: ["Total Attributed MQLs","Sum of MQLs"]
+    description: "Sum of Attributed MQLs"
+    tags: ["Sum of Attributed MQLs","Sum of MQLs"]
   }
 
   # MQL_Result Dimension
@@ -82,7 +82,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.MQL_Result ;;
     label: "MQL Result"
-    description: "Categorizes MQLs by their MQL SLA Result (Dispositioned without / in- / out-of-SLA, New without / in- / out-of-SLA, Auto Closed)."
+    description: "Categorizes MQLs by their MQL SLA Result"
     tags: ["MQL Result"]
   }
 
@@ -91,7 +91,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Lead_Score ;;
     label: "Lead Score"
-    description: "Indicates the quality of the MQL based on the prospect's behavioral score (A1 is the highest, B2 is the lowest)."
+    description: "Indicates the quality of the MQL based on the prospect's behavioral score."
     tags: ["Lead Score"]
   }
 
@@ -166,7 +166,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
           END)
         / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_Auto_Close_Rate"
-    description: "This attribute give details about A1/A2/A3 Auto Closed MQLs (%)"
+    description: "This attribute give details about Auto Closed MQLs (%)"
     tags: ["MQL Auto Close Rate"]
   }
 
@@ -189,7 +189,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
             ELSE NULL
             END) ;;
     label: "MQL_Accounts"
-    description: "This attribute give details about MQL_Accounts"
+    description: "This attribute give details about MQL Accounts"
     tags: ["MQL Accounts"]
   }
 
@@ -208,7 +208,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
             ELSE NULL
             END) ;;
     label: "Dispositioned_MQL_Accounts"
-    description: "This attribute give details about Dispositioned_MQL_Accounts"
+    description: "This attribute give details about Dispositioned MQL Accounts"
     tags: ["Dispositioned MQL Accounts"]
   }
 
@@ -222,8 +222,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
             ELSE NULL
             END) ;;
     label: "QSO_Accounts"
-    description: "This attribute give details about total QSO_Accounts"
-    tags: ["QSO Accounts"]
+    description: "This attribute give details about count of QSO Accounts"
+    tags: ["count of QSO Accounts","total QSO account"]
   }
 
   # ATO Dimension
@@ -261,7 +261,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
                 ELSE NULL
                 END)) ;;
     label: "ATO"
-    description: "This attribute give details about ATO"
+    description: "This attribute give details about ATO (Accounts with a QSO/Accounts with a Dispositioned Lead)"
     tags: ["ATO"]
   }
 
@@ -279,7 +279,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${Attributed_SALs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_to_SAL"
-    description: "This attribute give details about MQL_to_SAL"
+    description: "This attribute give details about MQL to SAL"
     tags: ["MQL to SAL"]
   }
 
@@ -288,8 +288,8 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${TABLE}.Attributed_SALs) ;;
     label: "Total_Attributed_SALs"
-    description: "This attribute give details about Total_Attributed_SALs"
-    tags: ["Total Attributed SALs","Sum of SALs"]
+    description: "This attribute give details about sum of Attributed SALs"
+    tags: ["sum of Attributed SALs","Sum of SALs"]
   }
 
   # SAL_to_S0 Dimension
@@ -297,7 +297,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${Attributed_S0s}) / NULLIF(SUM(${Attributed_SALs}), 0) ;;
     label: "SAL_to_S0"
-    description: "This attribute give details about SAL_to_S0"
+    description: "This attribute give details about SAL to S0"
     tags: ["SAL to S0"]
   }
 
@@ -307,7 +307,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${TABLE}.Attributed_S0s) ;;
     label: "Total_Attributed_S0s"
     description: "This attribute give details about Total_Attributed_S0s"
-    tags: ["Total Attributed S0s","Sum of S0s"]
+    tags: ["sum of Attributed S0s","Sum of S0s"]
   }
 
   # S0_to_QSO Dimension
@@ -315,7 +315,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_S0s}), 0) ;;
     label: "S0_to_QSO"
-    description: "This attribute give details about S0_to_QSO"
+    description: "This attribute give details about S0 to QSO"
     tags: ["S0 to QSO"]
   }
 
@@ -325,7 +325,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     sql: SUM(${TABLE}.Attributed_QSOs) ;;
     label: "Total_Attributed_QSOs"
     description: "This attribute give details about Total_Attributed_QSOs"
-    tags: ["Total Attributed QSOs","Sum of QSOs"]
+    tags: ["sum of Attributed QSOs","Sum of QSOs"]
   }
 
   # MQL_to_QSO Dimension
@@ -333,7 +333,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
     label: "MQL_to_QSO"
-    description: "This attribute give details about MQL_to_QSO"
+    description: "This attribute give details about MQL to QSO"
     tags: ["MQL to QSO"]
   }
 
@@ -342,7 +342,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: ${TABLE}.Attributed_QSOs ;;
     label: "Attributed QSOs"
-    description: "Attributed number (between 0 & 1) that indicates the fraction of the QSO that is attributable to eligible inquiries and/or leads                      (includes placeholders for outbound opportunities)."
+    description: "Attributed number (between 0 & 1) that indicates the fraction of the QSO that is attributable to eligible inquiries and/or leads (includes placeholders for outbound opportunities)."
     tags: ["Attributed QSOs"]
   }
 
@@ -351,7 +351,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: ${TABLE}.Attributed_S0s ;;
     label: "Attributed S0s"
-    description: "Attributed number (between 0 & 1) that indicates the fraction of the S0 that is attributable to eligible inquiries and/or leads                       (includes placeholders for outbound opportunities)."
+    description: "Attributed number (between 0 & 1) that indicates the fraction of the S0 that is attributable to eligible inquiries and/or leads (includes placeholders for outbound opportunities)."
     tags: ["Attributed S0s"]
   }
 
@@ -360,7 +360,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Buyer_Segment_Rollup ;;
     label: "Buyer Segment Rollup"
-    description: "The propect's role at their company rolled up to Executive, Decision Maker, Practitioner, or Unknown based on the Buyer Segment                        model."
+    description: "The propect's role at their company rolled up to Executive, Decision Maker, Practitioner, or Unknown based on the Buyer Segment model."
     tags: ["Buyer Segment Rollup"]
   }
 
@@ -369,7 +369,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Demand_Type ;;
     label: "Demand Type"
-    description: "Indicates whether the marketing effort was part of the Inbound or Outbound funnel. Inbound starts the prospect journey with an                         inquiry while Outbound starts with opportunity creation from sales outreach assisted by Marketing."
+    description: "Indicates whether the marketing effort was part of the Inbound or Outbound funnel. Inbound starts the prospect journey with an inquiry while Outbound starts with opportunity creation from sales outreach assisted by Marketing."
     tags: ["Demand Type"]
   }
 
@@ -378,7 +378,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql:${TABLE}.Greenfield_Status;;
     label: "Greenfield Status"
-    description: "Arbitrates the Greenfield status of demand based on the funnel stage, product, and date the demand was sourced -- use Greenfield                       Status to keep it simple!"
+    description: "Arbitrates the Greenfield status of demand based on the funnel stage, product, and date the demand was sourced -- use Greenfield Status to keep it simple!"
     tags: ["Greenfield Status"]
   }
 
@@ -387,7 +387,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Inquiry_Source ;;
     label: "Inquiry_Source"
-    description: "Inquiry was sourced by Direct Marketing vs Partner Marketing. If there is overlap between Direct and Partner, credit is split evenly                   with multi-touch attribution."
+    description: "Inquiry was sourced by Direct Marketing vs Partner Marketing. If there is overlap between Direct and Partner, credit is split evenly with multi-touch attribution."
     tags: ["Inquiry Source"]
   }
 
@@ -396,7 +396,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Lead_Initial_Routing_Team ;;
     label: "Lead Initial Routing Team"
-    description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Initial Routing Team (BDR,                              FSR/Specialist, Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
+    description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Initial Routing Team (BDR,FSR/Specialist, Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
     tags: ["Lead Initial Routing Team"]
   }
 
@@ -405,7 +405,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Lead_Owner_Team ;;
     label: "Lead Owner Team"
-    description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Owner Team (BDR, FSR/Specialist,                        Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
+    description: "Due to incomplete and/or outdated Vector profiles, this field categorizes & abitrates the Lead Owner Team (BDR, FSR/Specialist,Partner, SDR) based on account roles, xDR roster,  and manager hierarchy."
     tags: ["Lead Owner Team","Lead Owner"]
   }
 
@@ -419,7 +419,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
   }
 
 # Lead_Owner_User_LDAP_Manager Dimension
-  dimension: AttribLead_Owner_User_LDAP_Manageruted_MQLs {
+  dimension: Lead_Owner_User_LDAP_Manager {
     type: string
     sql:${TABLE}.Lead_Owner_User_LDAP_Manager;;
     label: "Lead Owner User LDAP Manager"
@@ -441,7 +441,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.MQL_Aging_Bucket ;;
     label: "MQL Aging Bucket"
-    description: "Buckets MQLs by the number of days from qualification to disposition, or if the MQL is still in New, the number of days since                          qualification."
+    description: "Buckets MQLs by the number of days from qualification to disposition, or if the MQL is still in New, the number of days since qualification."
     tags: ["MQL Aging Bucket","Aging Bucket"]
   }
 
@@ -507,7 +507,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.OKR_Reporting_Scope ;;
     label: "OKR Reporting Scope"
-    description: "NA"
+    description: "This attribute give details about OKR Reporting Scope"
     tags: ["OKR Reporting Scope"]
   }
 
@@ -516,7 +516,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: ${TABLE}.SAL_Disposition ;;
     label: "SAL Disposition"
-    description: "The final outcome of the SAL, where either an opportunity was created or not (i.e. did the Lead reach the S0+ stage). This field                      does not apply for Attribution 3.0."
+    description: "The final outcome of the SAL, where either an opportunity was created or not (i.e. did the Lead reach the S0+ stage). This field does not apply for Attribution 3.0."
     tags: ["SAL Disposition"]
   }
 
@@ -552,7 +552,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Offer_Products ;;
     label: "Offer Products"
-    description: "The individual product family(s) associated with the campaign. There can be 2+ products per campaign and there is currently no                        attribution model to dedup & produce MECE allocations. Instead, each product gets 100% of the credit for demand sourced."
+    description: "The individual product family's associated with the campaign."
     tags: ["Offer Products"]
   }
 
@@ -572,15 +572,15 @@ view: New_Marketing_Engaged_MQL_Funnel {
     label: "MQL Quarter"
     description: "The quarter the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep."
     tags: ["MQL Quarter","quarter"]
-      }
+  }
 
 # Inquiry_Quarter Dimension
-      dimension: Inquiry_Quarter {
-      type: string
-      sql: ${TABLE}.Inquiry_Quarter ;;
-      label: "Inquiry Quarter"
-      description: "The quarter the inquiry was submitted."
-      tags: ["Inquiry Quarter"]
+  dimension: Inquiry_Quarter {
+    type: string
+    sql: ${TABLE}.Inquiry_Quarter ;;
+    label: "Inquiry Quarter"
+    description: "The quarter the inquiry was submitted."
+    tags: ["Inquiry Quarter"]
   }
 
 # Attributed_Pipeline Dimension
@@ -588,7 +588,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: string
     sql: ${TABLE}.Attributed_Pipeline ;;
     label: "Attributed Pipeline"
-    description: "Attributed pipeline ($) that indicates the fraction of the current S1+ pipeline that is attributable to eligible inquiries and/or                     leads (includes placeholders for outbound opportunities). "
+    description: "Attributed pipeline ($) that indicates the fraction of the current S1+ pipeline that is attributable to eligible inquiries and/or leads (includes placeholders for outbound opportunities). "
     tags: ["Attributed Pipeline"]
   }
 
@@ -597,7 +597,7 @@ view: New_Marketing_Engaged_MQL_Funnel {
     type: number
     sql: SUM(${TABLE}.Attributed_Pipeline) ;;
     label: "Total_Attributed_Pipeline"
-    description: "This attribute give details about Total_Attributed_Pipeline"
+    description: "This attribute give details about sum of Attributed Pipeline"
     tags: ["Total Attributed Pipeline","Sum of attributed pipeline"]
   }
 
@@ -607,8 +607,99 @@ view: New_Marketing_Engaged_MQL_Funnel {
     drill_fields: [Inquiry_Key]
     label: "Inquiry_Key_Count"
     description: "This attribute give details about count of Inquiry Key"
-    tags: ["Inquiry Key Count","count of Inquiries"]
+    tags: ["Inquiry Count","count of Inquiries"]
   }
 
+# MQL_Date Dimension Group
+  dimension_group: MQL_Date {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.MQL_Date ;;
+    label: "MQL Date"
+    description: "the MQL qualified"
+    tags: ["MQL Date","date"]
+  }
+
+  # Previous Week, Month, Quarter and Year Dimensions
+  dimension: previous_week {
+    type: date
+    sql: DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK), INTERVAL 1 WEEK) ;;
+    label: "Previous Week"
+    description: "Date one week prior to the current date"
+    tags: ["previous week","last week"]
+  }
+
+  dimension: previous_month {
+    type: date
+    sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) ;;
+    label: "Previous Month"
+    description: "Date one month prior to the current date"
+    tags: ["previous month","last month"]
+  }
+
+  dimension: previous_quarter {
+    type: date
+    sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH), QUARTER) ;;
+    label: "Previous Quarter"
+    description: "Date one quarter prior to the current date"
+    tags: ["previous month","last month"]
+  }
+
+  dimension: previous_year {
+    type: date
+    sql: DATE(FORMAT_DATE('%Y-01-01', DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR))) ;;
+    label: "Previous Year"
+    description: "Date one year prior to the current date"
+    tags: ["previous year","last year"]
+  }
+
+  # MQLs for Previous Week, Month, Quarter and Year Measures
+  measure: mql_prev_week {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_week}) = FORMAT_DATE('%Y-%m-%d', ${MQL_Week})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Week"
+    description: "MQLs for the previous week"
+    tags: ["MQLs for last week","attributed MQL for previous week"]
+  }
+
+  measure: mql_prev_month {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_month}) = FORMAT_DATE('%Y-%m-%d', ${MQL_Month})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Month"
+    description: "MQLs for the previous month"
+    tags: ["MQLs for last month","attributed MQL for previous month"]
+  }
+
+  measure: mql_prev_quarter {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y-%m-%d', ${previous_quarter}) = FORMAT_DATE('%Y-%m-%d', ${MQL_Quarter})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Quarter"
+    description: "MQLs for the previous quarter"
+    tags: ["MQLs for last quarter","attributed MQL for previous quarter"]
+  }
+
+  measure: mql_prev_year {
+    type: sum
+    sql: CASE
+           WHEN FORMAT_DATE('%Y', ${previous_year}) = FORMAT_DATE('%Y', ${MQL_Date})
+           THEN ${Attributed_MQLs}
+           ELSE 0
+         END ;;
+    label: "MQLs Previous Year"
+    description: "MQLs for the previous year"
+    tags: ["MQLs for last year","attributed MQL for previous year"]
+  }
 
 }
