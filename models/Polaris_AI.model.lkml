@@ -17,3 +17,7 @@ explore:New_Marketing_Engaged_MQL_Funnel{
   view_name: New_Marketing_Engaged_MQL_Funnel
   case_sensitive: no
   }
+explore:Testing{
+  view_name: Testing
+  case_sensitive: no
+}
