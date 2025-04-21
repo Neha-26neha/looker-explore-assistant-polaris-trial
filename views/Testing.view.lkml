@@ -68,13 +68,13 @@ view: Testing {
     tags: ["Attributed MQLs","MQLs"]
   }
 
-  # Attributed_MQLs Dimension
-  measure: Total_MQLs {
+  # Attributed_MQLs Measure
+  measure: Total_Attributed_MQLs {
     type: number
     sql: SUM(${TABLE}.Attributed_MQLs) ;;
     label: "Total MQLs"
-    description: "Sum of Attributed MQLs"
-    tags: ["Sum of Attributed MQLs","Sum of MQLs"]
+    description: "Sum of Attributed number of MQLs (between 0 & 1) that indicates the fraction of the MQL that is attributable to each Inquiry that sourced it."
+    tags: ["Sum of Attributed MQLs","Sum of MQLs","Count of MQLs","Total MQLs"]
   }
 
   # MQL_Result Dimension
@@ -82,7 +82,7 @@ view: Testing {
     type: string
     sql: ${TABLE}.MQL_Result ;;
     label: "MQL Result"
-    description: "Categorizes MQLs by their MQL SLA Result"
+    description: "Categorizes MQLs by their MQL SLA Result (Dispositioned without / in- / out-of-SLA, New without / in- / out-of-SLA, Auto Closed)."
     tags: ["MQL Result"]
   }
 
