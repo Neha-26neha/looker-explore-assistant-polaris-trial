@@ -1,4 +1,4 @@
-view: MQL_Testing {
+view: Testing {
   # The sql_table_name parameter indicates the underlying database table
   sql_table_name: `google.com:project-polaris-ai.project_polaris_ai_ds.ME_MQL_Funnel` ;;
 
