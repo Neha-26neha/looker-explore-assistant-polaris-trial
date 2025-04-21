@@ -82,8 +82,8 @@ view: Testing {
     type: string
     sql: ${TABLE}.MQL_Result ;;
     label: "MQL Result"
-    description: "Categorizes MQLs by their MQL SLA Result (Dispositioned without / in- / out-of-SLA, New without / in- / out-of-SLA, Auto Closed)."
-    tags: ["MQL Result"]
+    description: "Categorizes MQLs by their MQL SLA Result like Dispositioned without / in- / out-of-SLA, New without / in- / out-of-SLA, Auto Closed."
+    tags: ["MQL Result","MQL Dispositioned"]
   }
 
   # Lead_Score Dimension
