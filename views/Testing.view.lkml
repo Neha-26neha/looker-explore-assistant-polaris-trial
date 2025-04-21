@@ -69,7 +69,7 @@ view: Testing {
   }
 
   # Attributed_MQLs Measure
-  measure: Total_Attributed_MQLs {
+  measure: Total_MQLs {
     type: number
     sql: SUM(${TABLE}.Attributed_MQLs) ;;
     label: "Total MQLs"
@@ -471,6 +471,15 @@ view: Testing {
     label: "MQL Disposition"
     description: "The final outcome of the MQL (whether the MQL became an SAL or not)."
     tags: ["MQL Disposition"]
+  }
+
+# MQL_Disposition measure
+  measure: Count_MQL_Disposition {
+    type: count
+    drill_fields: [MQL_Disposition]
+    label: "Count_MQL_Disposition"
+    description: "This attribute give details about count of MQL Disposition"
+    tags: ["MQL Disposition Count","count of MQL Disposition"]
   }
 
 # MQL_Month Dimension
