@@ -21,3 +21,7 @@ explore:Testing{
   view_name: Testing
   case_sensitive: no
 }
+explore:Country{
+  view_name: Country
+  case_sensitive: no
+}
