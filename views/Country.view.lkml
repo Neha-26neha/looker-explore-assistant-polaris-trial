@@ -275,6 +275,15 @@ view: Country {
     tags: ["Country Code"]
   }
 
+  # Country_Code2 Dimension
+  dimension: Country_Code2 {
+    type: string
+    sql: ${TABLE}.Country_Code ;;
+    label: "Country_Code2"
+    description: "This attribute give details about Country_Code2"
+    tags: ["Country_Code2"]
+  }
+
   # Population Dimension
   dimension: Population {
     type: string
