@@ -18,8 +18,7 @@ view: Country {
   dimension: Country_code {
     type: string
     #sql: ${TABLE}.Country_code ;;
-    sql: |
-    CASE
+    sql: CASE
     WHEN ${TABLE}.Country_code = 'AF' THEN 'AFG'
     WHEN ${TABLE}.Country_code = 'AX' THEN 'ALA'
     WHEN ${TABLE}.Country_code = 'AL' THEN 'ALB'
@@ -270,7 +269,7 @@ view: Country {
     WHEN ${TABLE}.Country_code = 'ZM' THEN 'ZMB'
     WHEN ${TABLE}.Country_code = 'ZW' THEN 'ZWE'
     ELSE NULL
-    END
+    END ;;
     label: "Country Code"
     description: "This attribute give details about Country Code"
     tags: ["Country Code"]
