@@ -311,4 +311,24 @@ view: Country {
     tags: ["Country Count","count of Country"]
   }
 
+
+# dummy measure
+measure: dummy_measure {
+  type: number
+  #sql: ${TABLE}.Country_code ;;
+  sql: CASE
+    WHEN ${TABLE}.Country_code = 'AF' THEN 1000
+    WHEN ${TABLE}.Country_code = 'AX' THEN 20
+    WHEN ${TABLE}.Country_code = 'AL' THEN 400
+    WHEN ${TABLE}.Country_code = 'DZ' THEN 90
+    WHEN ${TABLE}.Country_code = 'AS' THEN 100
+    WHEN ${TABLE}.Country_code = 'AD' THEN 90
+    WHEN ${TABLE}.Country_code = 'AO' THEN 100
+    WHEN ${TABLE}.Country_code = 'AI' THEN 150
+    ELSE 12
+    END ;;
+  label: "dummy_measure"
+  description: "This attribute give details about dummy_measure"
+  tags: ["dummy_measure "]
+}
 }
