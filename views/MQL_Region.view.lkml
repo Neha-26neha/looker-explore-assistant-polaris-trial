@@ -269,7 +269,7 @@ view: MQL_Region {
   dimension: Attributed_SALs {
     type: string
     sql:${TABLE}.Attributed_SALs;;
-    label: "AAttributed SALs"
+    label: "Attributed SALs"
     description: "Attributed number of SALs (between 0 & 1) that indicates the fraction of the SAL that is attributable to the Inquiries that sourced it. "
     tags: ["Attributed SALs"]
   }
