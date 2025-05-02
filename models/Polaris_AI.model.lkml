@@ -25,3 +25,7 @@ explore:Country{
   view_name: Country
   case_sensitive: no
 }
+explore:MQL_Region{
+  view_name: Country
+  case_sensitive: no
+}
