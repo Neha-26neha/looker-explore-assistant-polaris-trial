@@ -26,6 +26,6 @@ explore:Country{
   case_sensitive: no
 }
 explore:MQL_Region{
-  view_name: Country
+  view_name: MQL_Region
   case_sensitive: no
 }
