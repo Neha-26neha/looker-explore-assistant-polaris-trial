@@ -662,4 +662,14 @@ view: Testing {
     tags: ["previous year","last year"]
   }
 
+  #  rank_by_preferred_grouping measure
+  measure: rank_by_preferred_grouping {
+    type: number
+    sql: ROW_NUMBER() OVER (PARTITION BY ${TABLE}.{{ _user_attributes['preferred_grouping'] }} ORDER BY SUM(${Attributed_MQLs}) DESC) ;;
+    label: "rank_by_preferred_grouping"
+    description: "This attribute give details about rank by preferred grouping"
+    tags: ["rank by preferred grouping","best performed"]
+  }
+
+
 }
