@@ -29,3 +29,8 @@ explore:MQL_Region{
   view_name: MQL_Region
   case_sensitive: no
 }
+
+explore:me_inquiry_funnel{
+  view_name: me_inquiry_funnel
+  case_sensitive: no
+}
