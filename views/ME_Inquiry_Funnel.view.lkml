@@ -424,7 +424,7 @@ measure: Inq_to_MQL {
 measure: Total_Attributed_MQLs {
   type: number
   sql: SUM(${TABLE}.Attributed_MQLs) ;;
-  label: "Total MQLs"
+  label: "Total_Attributed_MQLs"
   description: "Sum of Attributed MQLs"
   tags: ["Sum of Attributed MQLs","Sum of MQLs"]
 }
