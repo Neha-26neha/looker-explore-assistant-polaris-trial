@@ -272,7 +272,7 @@ view: me_inquiry_funnel {
     sql: ${TABLE}.Marketing_Program_Category ;;
     label: "Marketing_Program_Category"
     description: "The category into which the marketing program falls. "
-    tags: ["Marketing Program Category","Marketing Program Category"]
+    tags: ["Marketing Program Category","Program Category"]
   }
 
 # MQL_Disposition Dimension
@@ -525,7 +525,7 @@ dimension_group: Inquiry_Date {
   type: time
   timeframes: [raw, time, date, week, month, quarter, year]
   sql: ${TABLE}.Inquiry_Date ;;
-  label: "MQL Date"
+  label: "Inquiry Date"
   description: "the Inquiry Date submitted"
   tags: ["Inquiry Date","date"]
 }
