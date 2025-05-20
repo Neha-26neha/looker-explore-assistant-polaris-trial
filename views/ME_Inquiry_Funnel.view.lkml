@@ -201,6 +201,7 @@ view: me_inquiry_funnel {
     label: "Inquiry_Datetime"
     description: "The datetime the inquiry was submitted."
     tags: ["Inquiry Datetime"]
+    datatype: date
   }
 
 # Inquiry_Month Dimension
@@ -210,6 +211,7 @@ view: me_inquiry_funnel {
     label: "Inquiry_Month"
     description: "The month the inquiry was submitted."
     tags: ["Inquiry Month","month"]
+    datatype: date
   }
 
 # Inquiry_Week Dimension
@@ -219,6 +221,7 @@ view: me_inquiry_funnel {
     label: "Inquiry_Week"
     description: "The week (starting Sunday) the inquiry was submitted."
     tags: ["Inquiry Week","week"]
+    datatype: date
   }
 
 # Inquiry_Date Dimension
@@ -228,6 +231,7 @@ view: me_inquiry_funnel {
     label: "Inquiry_Date"
     description: "The date the inquiry was submitted."
     tags: ["Inquiry Date","date"]
+    datatype: date
   }
 
 # Inquiry_Source Dimension
@@ -291,6 +295,7 @@ view: me_inquiry_funnel {
     label: "MQL_Disposition_Datetime"
     description: "The datetime the MQL is dispositioned (Accepted, Rejected, or Auto Closed). "
     tags: ["MQL Disposition Date"]
+    datatype: date
   }
 
 # MQL_Key Dimension
@@ -309,6 +314,7 @@ view: me_inquiry_funnel {
     label: "MQL_Qualification_Datetime"
     description: "The datetime the MQL qualified the MQL scoring threshold or the PreMQL was accepted/worked by a sales rep. "
     tags: ["MQL Qualification Date","Qualification Date"]
+    datatype: date
   }
 
 # Offer_Type Dimension
@@ -354,6 +360,7 @@ view: me_inquiry_funnel {
     label: "SAL Disposition"
     description: "The final outcome of the SAL, where either an opportunity was created or not (i.e. did the Lead reach the S0+ stage). This field does not apply for Attribution 3.0."
     tags: ["SAL Disposition"]
+    datatype: date
   }
 
 # SAL_Disposition_Datetime Dimension
@@ -363,6 +370,7 @@ view: me_inquiry_funnel {
     label: "SAL_Disposition_Datetime"
     description: "The datetime the SAL is dispositioned (Opportunity Created or Recycled SAL)."
     tags: ["SAL Disposition Date"]
+    datatype: date
   }
 
 # SAL_Key Dimension
@@ -399,169 +407,169 @@ view: me_inquiry_funnel {
     label: "Source"
     description: "Uses 'Inquiry Source' for Inquiries & Leads; uses 'Opportunity Source' for Opportunities. "
     tags: ["Source"]
-}
+  }
 
 
-# Attributed_Inquiries measure
-measure: Total_Attributed_Inquiries {
-  type: number
-  sql: SUM(${TABLE}.Attributed_Inquiries) ;;
-  label: "Total_Attributed_Inquiries"
-  description: "Sum of Attributed Inquiries"
-  tags: ["Sum of Attributed Inquiries","Sum of Inquiries"]
-}
+  # Attributed_Inquiries measure
+  measure: Total_Attributed_Inquiries {
+    type: number
+    sql: SUM(${TABLE}.Attributed_Inquiries) ;;
+    label: "Total_Attributed_Inquiries"
+    description: "Sum of Attributed Inquiries"
+    tags: ["Sum of Attributed Inquiries","Sum of Inquiries"]
+  }
 
-# Inq_to_MQL measure
-measure: Inq_to_MQL {
-  type: number
-  sql: SUM(${Attributed_MQLs}) / NULLIF(SUM(${Attributed_Inquiries}), 0) ;;
-  label: "Inq_to_MQL"
-  description: "This attribute give details about Inq to MQL"
-  tags: ["Inq to MQL"]
-}
+  # Inq_to_MQL measure
+  measure: Inq_to_MQL {
+    type: number
+    sql: SUM(${Attributed_MQLs}) / NULLIF(SUM(${Attributed_Inquiries}), 0) ;;
+    label: "Inq_to_MQL"
+    description: "This attribute give details about Inq to MQL"
+    tags: ["Inq to MQL"]
+  }
 
-# Attributed_MQLs measure
-measure: Total_Attributed_MQLs {
-  type: number
-  sql: SUM(${TABLE}.Attributed_MQLs) ;;
-  label: "Total_Attributed_MQLs"
-  description: "Sum of Attributed MQLs"
-  tags: ["Sum of Attributed MQLs","Sum of MQLs"]
-}
+  # Attributed_MQLs measure
+  measure: Total_Attributed_MQLs {
+    type: number
+    sql: SUM(${TABLE}.Attributed_MQLs) ;;
+    label: "Total_Attributed_MQLs"
+    description: "Sum of Attributed MQLs"
+    tags: ["Sum of Attributed MQLs","Sum of MQLs"]
+  }
 
-# MQL_to_SAL measure
-measure: MQL_to_SAL {
-  type: number
-  sql: SUM(${Attributed_SALs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
-  label: "MQL_to_SAL"
-  description: "This attribute give details about MQL to SAL"
-  tags: ["MQL to SAL"]
-}
+  # MQL_to_SAL measure
+  measure: MQL_to_SAL {
+    type: number
+    sql: SUM(${Attributed_SALs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
+    label: "MQL_to_SAL"
+    description: "This attribute give details about MQL to SAL"
+    tags: ["MQL to SAL"]
+  }
 
-# Attributed_SALs measure
-measure: Total_Attributed_SALs {
-  type: number
-  sql: SUM(${TABLE}.Attributed_SALs) ;;
-  label: "Total_Attributed_SALs"
-  description: "This attribute give details about sum of Attributed SALs"
-  tags: ["sum of Attributed SALs","Sum of SALs"]
-}
+  # Attributed_SALs measure
+  measure: Total_Attributed_SALs {
+    type: number
+    sql: SUM(${TABLE}.Attributed_SALs) ;;
+    label: "Total_Attributed_SALs"
+    description: "This attribute give details about sum of Attributed SALs"
+    tags: ["sum of Attributed SALs","Sum of SALs"]
+  }
 
-# SAL_to_S0 measure
-measure: SAL_to_S0 {
-  type: number
-  sql: SUM(${Attributed_S0s}) / NULLIF(SUM(${Attributed_SALs}), 0) ;;
-  label: "SAL_to_S0"
-  description: "This attribute give details about SAL to S0"
-  tags: ["SAL to S0"]
-}
+  # SAL_to_S0 measure
+  measure: SAL_to_S0 {
+    type: number
+    sql: SUM(${Attributed_S0s}) / NULLIF(SUM(${Attributed_SALs}), 0) ;;
+    label: "SAL_to_S0"
+    description: "This attribute give details about SAL to S0"
+    tags: ["SAL to S0"]
+  }
 
-# Attributed_S0s measure
-measure: Total_Attributed_S0s {
-  type: number
-  sql: SUM(${TABLE}.Attributed_S0s) ;;
-  label: "Total_Attributed_S0s"
-  description: "This attribute give details about Total_Attributed_S0s"
-  tags: ["sum of Attributed S0s","Sum of S0s"]
-}
+  # Attributed_S0s measure
+  measure: Total_Attributed_S0s {
+    type: number
+    sql: SUM(${TABLE}.Attributed_S0s) ;;
+    label: "Total_Attributed_S0s"
+    description: "This attribute give details about Total_Attributed_S0s"
+    tags: ["sum of Attributed S0s","Sum of S0s"]
+  }
 
-# S0_to_QSO measure
-measure: S0_to_QSO {
-  type: number
-  sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_S0s}), 0) ;;
-  label: "S0_to_QSO"
-  description: "This attribute give details about S0 to QSO"
-  tags: ["S0 to QSO"]
-}
+  # S0_to_QSO measure
+  measure: S0_to_QSO {
+    type: number
+    sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_S0s}), 0) ;;
+    label: "S0_to_QSO"
+    description: "This attribute give details about S0 to QSO"
+    tags: ["S0 to QSO"]
+  }
 
-# Attributed_QSOs measure
-measure: Total_Attributed_QSOs {
-  type: number
-  sql: SUM(${TABLE}.Attributed_QSOs) ;;
-  label: "Total_Attributed_QSOs"
-  description: "This attribute give details about Total_Attributed_QSOs"
-  tags: ["sum of Attributed QSOs","Sum of QSOs"]
-}
+  # Attributed_QSOs measure
+  measure: Total_Attributed_QSOs {
+    type: number
+    sql: SUM(${TABLE}.Attributed_QSOs) ;;
+    label: "Total_Attributed_QSOs"
+    description: "This attribute give details about Total_Attributed_QSOs"
+    tags: ["sum of Attributed QSOs","Sum of QSOs"]
+  }
 
-# MQL_to_QSO measure
-measure: MQL_to_QSO{
-  type: number
-  sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
-  label: "MQL_to_QSO"
-  description: "This attribute give details about MQL to QSO"
-  tags: ["MQL to QSO"]
-}
+  # MQL_to_QSO measure
+  measure: MQL_to_QSO{
+    type: number
+    sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_MQLs}), 0) ;;
+    label: "MQL_to_QSO"
+    description: "This attribute give details about MQL to QSO"
+    tags: ["MQL to QSO"]
+  }
 
-# SAL_to_QSO measure
-measure: SAL_to_QSO{
-  type: number
-  sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_SALs}), 0) ;;
-  label: "SAL_to_QSO"
-  description: "This attribute give details about SAL to QSO"
-  tags: ["SAL to QSO"]
-}
+  # SAL_to_QSO measure
+  measure: SAL_to_QSO{
+    type: number
+    sql: SUM(${Attributed_QSOs}) / NULLIF(SUM(${Attributed_SALs}), 0) ;;
+    label: "SAL_to_QSO"
+    description: "This attribute give details about SAL to QSO"
+    tags: ["SAL to QSO"]
+  }
 
 # Inquiry_Key Dimension
-dimension: Inquiry_Key {
-  type: string
-  sql: ${TABLE}.Inquiry_Key ;;
-  label: "Inquiry Key"
-  description: "The unique identifier (primary key) for the inquiry."
-  tags: ["Inquiry Key","inquiry","inquiries"]
-}
+  dimension: Inquiry_Key {
+    type: string
+    sql: ${TABLE}.Inquiry_Key ;;
+    label: "Inquiry Key"
+    description: "The unique identifier (primary key) for the inquiry."
+    tags: ["Inquiry Key","inquiry","inquiries"]
+  }
 
 # Inquiry_Key_Count measure
-measure: Inquiry_Key_Count {
-  type: count
-  drill_fields: [Inquiry_Key]
-  label: "Inquiry_Key_Count"
-  description: "This attribute give details about count of Inquiry Key"
-  tags: ["Inquiry Count","count of Inquiries"]
-}
+  measure: Inquiry_Key_Count {
+    type: count
+    drill_fields: [Inquiry_Key]
+    label: "Inquiry_Key_Count"
+    description: "This attribute give details about count of Inquiry Key"
+    tags: ["Inquiry Count","count of Inquiries"]
+  }
 
 
 # Inquiry_Date Dimension Group
-dimension_group: Inquiry_Date {
-  type: time
-  timeframes: [raw, time, date, week, month, quarter, year]
-  sql: ${TABLE}.Inquiry_Date ;;
-  label: "Inquiry Date"
-  description: "the Inquiry Date submitted"
-  tags: ["Inquiry Date","date"]
-}
+  dimension_group: Inquiry_Date {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
+    sql: ${TABLE}.Inquiry_Date ;;
+    label: "Inquiry Date"
+    description: "the Inquiry Date submitted"
+    tags: ["Inquiry Date","date"]
+  }
 
-# Previous Week, Month, Quarter and Year Dimensions
-dimension: previous_week {
-  type: date
-  sql: DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK), INTERVAL 1 WEEK) ;;
-  label: "Previous Week"
-  description: "Date one week prior to the current date"
-  tags: ["previous week","last week"]
-}
+  # Previous Week, Month, Quarter and Year Dimensions
+  dimension: previous_week {
+    type: date
+    sql: DATE_SUB(DATE_TRUNC(CURRENT_DATE(), WEEK), INTERVAL 1 WEEK) ;;
+    label: "Previous Week"
+    description: "Date one week prior to the current date"
+    tags: ["previous week","last week"]
+  }
 
-dimension: previous_month {
-  type: date
-  sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) ;;
-  label: "Previous Month"
-  description: "Date one month prior to the current date"
-  tags: ["previous month","last month"]
-}
+  dimension: previous_month {
+    type: date
+    sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH) ;;
+    label: "Previous Month"
+    description: "Date one month prior to the current date"
+    tags: ["previous month","last month"]
+  }
 
-dimension: previous_quarter {
-  type: date
-  sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH), QUARTER) ;;
-  label: "Previous Quarter"
-  description: "Date one quarter prior to the current date"
-  tags: ["previous month","last month"]
-}
+  dimension: previous_quarter {
+    type: date
+    sql: DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 3 MONTH), QUARTER) ;;
+    label: "Previous Quarter"
+    description: "Date one quarter prior to the current date"
+    tags: ["previous month","last month"]
+  }
 
-dimension: previous_year {
-  type: date
-  sql: DATE(FORMAT_DATE('%Y-01-01', DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR))) ;;
-  label: "Previous Year"
-  description: "Date one year prior to the current date"
-  tags: ["previous year","last year"]
-}
+  dimension: previous_year {
+    type: date
+    sql: DATE(FORMAT_DATE('%Y-01-01', DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR))) ;;
+    label: "Previous Year"
+    description: "Date one year prior to the current date"
+    tags: ["previous year","last year"]
+  }
 
 
 }
