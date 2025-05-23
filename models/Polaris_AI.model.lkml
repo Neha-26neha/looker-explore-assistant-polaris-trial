@@ -34,3 +34,8 @@ explore:me_inquiry_funnel{
   view_name: me_inquiry_funnel
   case_sensitive: no
 }
+
+explore:me_qso_funnel{
+  view_name: me_qso_funnel
+  case_sensitive: no
+}
