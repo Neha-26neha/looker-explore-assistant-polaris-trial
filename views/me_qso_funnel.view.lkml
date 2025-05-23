@@ -248,7 +248,7 @@ view: me_qso_funnel {
             ELSE 0
             END))
         / CAST(NULLIF(COUNT(DISTINCT ${Validated_Opportunity_Key}), 0) AS FLOAT64) ;;
-    label: "Total_Attributed_Pipeline"
+    label: "Direct_QSO_Contribution"
     description: "This attribute give details about Direct QSO Contribution"
     tags: ["Direct QSO Contribution"]
   }
@@ -326,7 +326,7 @@ view: me_qso_funnel {
           WHEN ${OKR_Reporting_Scope} = 'Direct OKR' THEN ${Attributed_Pipeline}
           ELSE 0
           END) ;;
-    label: "Total_Attributed_Pipeline"
+    label: "Direct_OKR_Pipeline"
     description: "This attribute give details about Direct OKR Pipeline"
     tags: ["Direct OKR Pipeline"]
   }
@@ -381,7 +381,7 @@ view: me_qso_funnel {
             THEN ${Attributed_Pipeline}
           ELSE CAST(NULL AS DOUBLE)
           END) ;;
-    label: "Partner_OKR_Pipeline"
+    label: "Attributed_OKR_Pipeline"
     description: "This attribute give details about Attributed OKR Pipeline"
     tags: ["Attributed OKR Pipeline"]
   }
