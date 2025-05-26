@@ -297,7 +297,7 @@ view: me_qso_funnel {
 # Marketing_QSO_Contribution measure
   measure: Marketing_QSO_Contribution {
     type: number
-    sql: SUM(
+    sql: (SUM(
           CASE
             WHEN ${OKR_Reporting_Scope} IN ('Direct OKR', 'Partner OKR')
               THEN ${Attributed_QSOs}
@@ -389,7 +389,7 @@ view: me_qso_funnel {
 # Marketing_Pipeline_Contribution measure
   measure: Marketing_Pipeline_Contribution {
     type: number
-    sql: SUM(
+    sql: (SUM(
           CASE
             WHEN ${OKR_Reporting_Scope} IN ('Direct OKR', 'Partner OKR')
               THEN ${Attributed_Pipeline}
