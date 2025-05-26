@@ -242,7 +242,7 @@ view: me_qso_funnel {
 # Direct_QSO_Contribution measure
   measure: Direct_QSO_Contribution {
     type: number
-    sql: SUM(
+    sql: (SUM(
           CASE
             WHEN ${OKR_Reporting_Scope} = 'Direct OKR' THEN ${Attributed_QSOs}
             ELSE 0
@@ -269,7 +269,7 @@ view: me_qso_funnel {
 # Partner_QSO_Contribution measure
   measure: Partner_QSO_Contribution {
     type: number
-    sql: SUM(
+    sql: (SUM(
           CASE
             WHEN ${OKR_Reporting_Scope} = 'Partner OKR' THEN ${Attributed_QSOs}
             ELSE 0
@@ -287,7 +287,7 @@ view: me_qso_funnel {
         CASE
           WHEN ${OKR_Reporting_Scope} IN ('Direct OKR', 'Partner OKR')
             THEN ${Attributed_QSOs}
-          ELSE CAST(NULL AS DOUBLE)
+          ELSE NULL
           END) ;;
     label: "Attributed_OKR_QSOs"
     description: "This attribute give details about Attributed OKR QSOs"
@@ -301,7 +301,7 @@ view: me_qso_funnel {
           CASE
             WHEN ${OKR_Reporting_Scope} IN ('Direct OKR', 'Partner OKR')
               THEN ${Attributed_QSOs}
-            ELSE CAST(NULL AS DOUBLE)
+            ELSE NULL
             END))
         / CAST(NULLIF(COUNT(DISTINCT ${Validated_Opportunity_Key}), 0) AS FLOAT64) ;;
     label: "Marketing_QSO_Contribution"
@@ -334,7 +334,7 @@ view: me_qso_funnel {
 # Direct_Pipeline_Contribution measure
   measure: Direct_Pipeline_Contribution {
     type: number
-    sql: SUM(
+    sql: (SUM(
           CASE
             WHEN ${OKR_Reporting_Scope} = 'Direct OKR' THEN ${Attributed_Pipeline}
             ELSE 0
@@ -361,7 +361,7 @@ view: me_qso_funnel {
 # Partner_Pipeline_Contribution measure
   measure: Partner_Pipeline_Contribution {
     type: number
-    sql: SUM(
+    sql: (SUM(
           CASE
             WHEN ${OKR_Reporting_Scope} = 'Partner OKR' THEN ${Attributed_Pipeline}
             ELSE 0
@@ -379,7 +379,7 @@ view: me_qso_funnel {
         CASE
           WHEN ${OKR_Reporting_Scope} IN ('Direct OKR', 'Partner OKR')
             THEN ${Attributed_Pipeline}
-          ELSE CAST(NULL AS DOUBLE)
+          ELSE NULL
           END) ;;
     label: "Attributed_OKR_Pipeline"
     description: "This attribute give details about Attributed OKR Pipeline"
@@ -393,7 +393,7 @@ view: me_qso_funnel {
           CASE
             WHEN ${OKR_Reporting_Scope} IN ('Direct OKR', 'Partner OKR')
               THEN ${Attributed_Pipeline}
-            ELSE CAST(NULL AS DOUBLE)
+            ELSE NULL
             END))
         / (NULLIF(SUM(${Total_Validated_Pipeline}), 0.0)) ;;
     label: "Marketing_Pipeline_Contribution"
